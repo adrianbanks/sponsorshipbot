@@ -1,14 +1,20 @@
 ﻿using System.Linq;
 using System.Text;
 using SponsorshipBot.DataAccess;
+using SponsorshipBot.Models;
 
 namespace SponsorshipBot.Commands
 {
-    public class ListAllSponsorsCommand : ICommand
+    [Command("all")]
+    public class ListAllSponsorsCommand : CommandBase
     {
         private readonly SponsorRepository sponsorRepository = new SponsorRepository();
 
-        public string Execute()
+        public ListAllSponsorsCommand(SlackMessage message) : base(message)
+        {
+        }
+
+        public override string Execute()
         {
             var allSponsors = sponsorRepository.GetAllSponsors().ToList();
 

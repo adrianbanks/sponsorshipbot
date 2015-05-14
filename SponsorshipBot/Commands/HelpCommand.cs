@@ -1,8 +1,15 @@
-﻿namespace SponsorshipBot.Commands
+﻿using SponsorshipBot.Models;
+
+namespace SponsorshipBot.Commands
 {
-    public class HelpCommand : ICommand
+    [Command("help")]
+    public class HelpCommand : CommandBase
     {
-        public string Execute()
+        public HelpCommand(SlackMessage message) : base(message)
+        {
+        }
+
+        public override string Execute()
         {
             const string helpText = @"
 `total` Show the total amount pledged so far

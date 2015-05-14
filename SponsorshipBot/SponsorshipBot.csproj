@@ -129,6 +129,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Commands\CommandAttribute.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandParser.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
