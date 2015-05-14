@@ -20,7 +20,7 @@ namespace SponsorshipBot.Commands
 
             if (!allSponsors.Any())
             {
-                return "No sponsors yet!";
+                return "No sponsors yet :worried:";
             }
 
             var text = new StringBuilder();
