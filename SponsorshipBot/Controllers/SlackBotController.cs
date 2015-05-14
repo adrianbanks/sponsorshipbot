@@ -1,7 +1,9 @@
 ﻿using System.Configuration;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
+using SponsorshipBot.DataAccess;
 
 namespace SponsorshipBot.Controllers
 {
@@ -20,6 +22,8 @@ namespace SponsorshipBot.Controllers
 
     public class SlackBotController : ApiController
     {
+        private readonly SponsorRepository sponsorRepository = new SponsorRepository();
+
         public HttpResponseMessage Endpoint(SlackMessage message)
         {
             var slackTeamToken = ConfigurationManager.AppSettings["Slack_team_token"];
@@ -27,6 +31,14 @@ namespace SponsorshipBot.Controllers
             if (message.token != slackTeamToken)
             {
                 return this.Request.CreateErrorResponse(HttpStatusCode.Forbidden, "Invalid team token");
+            }
+
+            var allSponsors = sponsorRepository.GetAllSponsors();
+            var text = new StringBuilder();
+
+            foreach (var sponsor in allSponsors)
+            {
+                text.AppendLine(sponsor.Name);
             }
 
             /*
@@ -41,7 +53,7 @@ namespace SponsorshipBot.Controllers
             text=94070
             */
 
-            return new HttpResponseMessage {Content = new StringContent("it worked!")};
+            return new HttpResponseMessage {Content = new StringContent(text.ToString())};
         }
     }
 }
