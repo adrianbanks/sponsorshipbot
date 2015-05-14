@@ -29,7 +29,7 @@ namespace SponsorshipBot.Controllers
             }
             catch (Exception exception)
             {
-                return this.Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
+                return this.Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception.Message, exception);
             }
         }
 
