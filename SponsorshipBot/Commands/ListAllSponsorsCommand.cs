@@ -26,16 +26,19 @@ namespace SponsorshipBot.Commands
             var text = new StringBuilder();
             text.AppendLine("Current sponsors:");
             text.AppendLine();
+            decimal total = 0;
 
             foreach (var sponsor in allSponsors)
             {
                 if (sponsor.AmountReceived.HasValue)
                 {
                     text.AppendFormat("    {0} has already paid `£{1}`", sponsor.Name, sponsor.AmountReceived.Value);
+                    total += sponsor.AmountReceived.Value;
                 }
                 else if (sponsor.AmountPledged.HasValue)
                 {
                     text.AppendFormat("    {0} has pledged `£{1}`", sponsor.Name, sponsor.AmountPledged.Value);
+                    total += sponsor.AmountPledged.Value;
                 }
                 else
                 {
@@ -44,6 +47,8 @@ namespace SponsorshipBot.Commands
             }
 
             text.AppendLine();
+            text.AppendLine();
+            text.AppendLine("Total: `£" + total + "`");
             return text.ToString();
         }
     }
