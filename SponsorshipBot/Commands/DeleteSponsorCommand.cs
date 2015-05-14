@@ -18,7 +18,7 @@ namespace SponsorshipBot.Commands
         {
             if (!commandArguments.Any())
             {
-                return "How d'you expect me to delete remove a sponsor when you don't tell me which one? :confused:";
+                return "How d'you expect me to remove a sponsor when you don't tell me which one? :confused:";
             }
 
             var sponsorName = commandArguments[0];
