@@ -21,7 +21,7 @@ namespace SponsorshipBot.Commands
 `add <name> (amount pledged)` Add a new sponsor
 `update <name> pledged=<amount>` Update the amount pledged by a sponsor
 `update <name> received=<amount>` Update the amount received from a sponsor
-`remove <name> Remove a sponsor
+`remove <name>` Remove a sponsor
 `all` Show all sponsors
 ";
             return helpText;
