@@ -133,6 +133,7 @@
     <Compile Include="Commands\CommandAttribute.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandParser.cs" />
+    <Compile Include="Commands\DeleteSponsorCommand.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ListAllSponsorsCommand.cs" />

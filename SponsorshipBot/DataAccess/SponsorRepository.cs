@@ -17,5 +17,10 @@ namespace SponsorshipBot.DataAccess
         {
             database.Sponsors.Insert(sponsor);
         }
+
+        public void DeleteSponsor(string name)
+        {
+            database.Sponsors.Delete(Name: name);
+        }
     }
 }
