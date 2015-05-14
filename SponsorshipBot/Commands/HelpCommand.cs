@@ -16,8 +16,8 @@ namespace SponsorshipBot.Commands
 `(optional parameter)`
 
 `totals` Show the sponsorship totals so far
-`totals total=<amount> Update the total amount needed
-`totals start=<amount> Update the starting balance
+`totals total=<amount>` Update the total amount needed
+`totals start=<amount>` Update the starting balance
 `all` Show all sponsors
 ";
             return helpText;
