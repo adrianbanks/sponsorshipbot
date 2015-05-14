@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using SponsorshipBot.DataAccess;
 using SponsorshipBot.Models;
@@ -33,7 +34,7 @@ namespace SponsorshipBot.Commands
             response.AppendLine("Starting balance: `£" + startingBalance + "`");
             response.AppendLine("Total pledged: `£" + amountPledged + "`");
             response.AppendLine();
-            response.AppendLine((shortfall > 0 ? "Shortfall" : "Surplus") + ": `£" + shortfall + "`");
+            response.AppendLine((shortfall > 0 ? "Shortfall" : "Surplus") + ": `£" + Math.Abs(shortfall) + "`");
 
             return response.ToString();
         }
