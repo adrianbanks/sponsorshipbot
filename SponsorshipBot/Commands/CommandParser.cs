@@ -17,7 +17,7 @@ namespace SponsorshipBot.Commands
                 return new ListAllSponsorsCommand(message);
             }
 
-            var matchingCommands = FindAllCommands().Where(t => MatchesCommandText(t, commandText)).ToList();
+            var matchingCommands = FindAllCommandTypes().Where(t => MatchesCommandText(t, commandText)).ToList();
 
             if (!matchingCommands.Any())
             {
@@ -44,7 +44,7 @@ namespace SponsorshipBot.Commands
             return attribute != null && string.Equals(commandText, attribute.CommandText);
         }
 
-        private IEnumerable<Type> FindAllCommands()
+        public IEnumerable<Type> FindAllCommandTypes()
         {
             var allCommands = GetType().Assembly
                                        .GetTypes()

@@ -12,10 +12,11 @@ namespace SponsorshipBot.Commands
         public override string Execute()
         {
             const string helpText = @"
-`total` Show the total amount pledged so far
-`needed` Set the total amount of sponsorship needed
+<required parameter>
+(optional parameter)
+
+`totals` Show the sponsorship totals so far
 `all` Show all sponsors
-`add <name> (amount)` Add a new sponsor
 ";
             return helpText;
         }

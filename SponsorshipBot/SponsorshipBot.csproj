@@ -135,8 +135,11 @@
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ListAllSponsorsCommand.cs" />
+    <Compile Include="Commands\TotalsCommand.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SlackBotController.cs" />
+    <Compile Include="Models\Totals.cs" />
+    <Compile Include="DataAccess\TotalsRepository.cs" />
     <Compile Include="Models\SlackMessage.cs" />
     <Compile Include="DataAccess\SponsorRepository.cs" />
     <Compile Include="Global.asax.cs">
