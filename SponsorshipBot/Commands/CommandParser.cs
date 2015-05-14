@@ -33,16 +33,15 @@ namespace SponsorshipBot.Commands
             return command;
         }
 
+        private string GetMainCommandText(string text)
+        {
+            return string.IsNullOrWhiteSpace(text) ? string.Empty : text.Split(' ')[0];
+        }
+
         private bool MatchesCommandText(Type commandType, string commandText)
         {
             var attribute = commandType.GetCustomAttribute<CommandAttribute>();
             return attribute != null && string.Equals(commandText, attribute.CommandText);
-        }
-
-        private string GetMainCommandText(string text)
-        {
-            var parts = text.Split(' ');
-            return parts[0];
         }
 
         private IEnumerable<Type> FindAllCommands()
