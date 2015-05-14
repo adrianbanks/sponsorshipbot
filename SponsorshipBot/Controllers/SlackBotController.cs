@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 using SponsorshipBot.Commands;
 using SponsorshipBot.Models;
@@ -28,7 +29,13 @@ namespace SponsorshipBot.Controllers
             }
             catch (Exception exception)
             {
-                return this.Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception.Message, exception);
+                var errorMessage = new StringBuilder();
+                errorMessage.AppendLine("Message: " + message);
+                errorMessage.AppendLine();
+                errorMessage.AppendLine("Stack Trace:");
+                errorMessage.AppendLine(exception.StackTrace);
+                errorMessage.AppendLine();
+                return this.Request.CreateErrorResponse(HttpStatusCode.InternalServerError, errorMessage.ToString());
             }
         }
     }
