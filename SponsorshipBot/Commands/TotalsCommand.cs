@@ -20,16 +20,18 @@ namespace SponsorshipBot.Commands
         {
             if (commandArguments.Any())
             {
-                if (commandArguments[0].StartsWith("total=", StringComparison.CurrentCultureIgnoreCase))
+                var monetaryArgument = commandArguments[0];
+
+                if (monetaryArgument.StartsWith("total=", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    var totalNeededStr = commandArguments[0].Substring(6);
+                    var totalNeededStr = monetaryArgument.Substring(6);
                     decimal totalNeeded = DecimalEx.Parse(totalNeededStr);
                     totalsRepository.UpdateTotalNeeded(totalNeeded);
                 }
 
-                if (commandArguments[0].StartsWith("start=", StringComparison.CurrentCultureIgnoreCase))
+                if (monetaryArgument.StartsWith("start=", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    var startingBalanceStr = commandArguments[0].Substring(6);
+                    var startingBalanceStr = monetaryArgument.Substring(6);
                     decimal startingBalance = DecimalEx.Parse(startingBalanceStr);
                     totalsRepository.UpdateStartingBalance(startingBalance);
                 }
@@ -55,7 +57,15 @@ namespace SponsorshipBot.Commands
             response.AppendLine("Starting balance: `£" + startingBalance + "`");
             response.AppendLine("Total pledged: `£" + amountPledged + "`");
             response.AppendLine();
-            response.AppendLine((shortfall > 0 ? "Shortfall" : "Surplus") + ": `£" + Math.Abs(shortfall) + "`");
+
+            if (shortfall > 0)
+            {
+                response.AppendLine("Shortfall: `£" + Math.Abs(shortfall) + "` :worried:");
+            }
+            else
+            {
+                response.AppendLine("Surplus: `£" + Math.Abs(shortfall) + "` :relaxed:");
+            }
 
             return response.ToString();
         }
