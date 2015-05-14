@@ -30,7 +30,7 @@ namespace SponsorshipBot.Controllers
             catch (Exception exception)
             {
                 var errorMessage = new StringBuilder();
-                errorMessage.AppendLine("Message: " + message);
+                errorMessage.AppendLine("Message: " + exception.Message);
                 errorMessage.AppendLine();
                 errorMessage.AppendLine("Stack Trace:");
                 errorMessage.AppendLine(exception.StackTrace);
