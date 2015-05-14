@@ -25,12 +25,25 @@ namespace SponsorshipBot.Commands
 
             var text = new StringBuilder();
             text.AppendLine("Current sponsors:");
+            text.AppendLine();
 
             foreach (var sponsor in allSponsors)
             {
-                text.AppendLine("    " + sponsor.Name);
+                if (sponsor.AmountReceived.HasValue)
+                {
+                    text.AppendFormat("    {0} has already paid `£{1}`", sponsor.Name, sponsor.AmountReceived.Value);
+                }
+                else if (sponsor.AmountPledged.HasValue)
+                {
+                    text.AppendFormat("    {0} has pledged `£{1}`", sponsor.Name, sponsor.AmountPledged.Value);
+                }
+                else
+                {
+                    text.AppendFormat("    {0} has agreed to be a sponsor", sponsor.Name);
+                }
             }
 
+            text.AppendLine();
             return text.ToString();
         }
     }

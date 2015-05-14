@@ -12,8 +12,8 @@ namespace SponsorshipBot.Commands
         public override string Execute()
         {
             const string helpText = @"
-<required parameter>
-(optional parameter)
+`<required parameter>`
+`(optional parameter)`
 
 `totals` Show the sponsorship totals so far
 `all` Show all sponsors
