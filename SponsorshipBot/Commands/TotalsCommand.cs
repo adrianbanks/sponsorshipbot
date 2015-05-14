@@ -33,7 +33,7 @@ namespace SponsorshipBot.Commands
             response.AppendLine("Starting balance: `£" + startingBalance + "`");
             response.AppendLine("Total pledged: `£" + amountPledged + "`");
             response.AppendLine();
-            response.AppendLine("Shortfall: `£" + shortfall + "`");
+            response.AppendLine((shortfall > 0 ? "Shortfall" : "Surplus") + ": `£" + shortfall + "`");
 
             return response.ToString();
         }
