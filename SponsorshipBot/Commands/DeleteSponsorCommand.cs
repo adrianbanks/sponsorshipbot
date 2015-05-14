@@ -4,7 +4,7 @@ using SponsorshipBot.Models;
 
 namespace SponsorshipBot.Commands
 {
-    [Command("delete", "remote")]
+    [Command("delete", "remove")]
     public class DeleteSponsorCommand : CommandBase
     {
         private readonly SponsorRepository sponsorRepository = new SponsorRepository();
