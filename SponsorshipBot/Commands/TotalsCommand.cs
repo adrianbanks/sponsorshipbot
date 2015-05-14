@@ -12,12 +12,33 @@ namespace SponsorshipBot.Commands
         private readonly TotalsRepository totalsRepository = new TotalsRepository();
         private readonly SponsorRepository sponsorRepository = new SponsorRepository();
 
-        public TotalsCommand(SlackMessage message)
-            : base(message)
+        public TotalsCommand(SlackMessage message, string[] commandArguments) : base(message, commandArguments)
         {
         }
 
         public override string Execute()
+        {
+            if (commandArguments.Any())
+            {
+                if (commandArguments[0].StartsWith("total=", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    var totalNeededStr = commandArguments[0].Substring(6).Trim();
+                    decimal totalNeeded = Decimal.Parse(totalNeededStr);
+                    totalsRepository.UpdateTotalNeeded(totalNeeded);
+                }
+
+                if (commandArguments[0].StartsWith("start=", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    var startingBalanceStr = commandArguments[0].Substring(6).Trim();
+                    decimal startingBalance = Decimal.Parse(startingBalanceStr);
+                    totalsRepository.UpdateStartingBalance(startingBalance);
+                }
+            }
+
+            return ShowTotals();
+        }
+
+        private string ShowTotals()
         {
             var totals = totalsRepository.GetTotals();
             var startingBalance = totals.StartingBalance;

@@ -10,32 +10,40 @@ namespace SponsorshipBot.Commands
     {
         public ICommand ParseCommand(SlackMessage message)
         {
-            var commandText = GetMainCommandText(message.text);
+            var commandParts = GetCommandParts(message.text);
+            var mainCommand = commandParts.Item1;
+            var commandArguments = commandParts.Item2;
 
-            if (string.IsNullOrWhiteSpace(commandText))
+            if (string.IsNullOrWhiteSpace(mainCommand))
             {
-                return new ListAllSponsorsCommand(message);
+                return new ListAllSponsorsCommand(message, commandArguments);
             }
 
-            var matchingCommands = FindAllCommandTypes().Where(t => MatchesCommandText(t, commandText)).ToList();
+            var matchingCommands = FindAllCommandTypes().Where(t => MatchesCommandText(t, mainCommand)).ToList();
 
             if (!matchingCommands.Any())
             {
-                throw new Exception("Unknown command: " + commandText);
+                throw new Exception("Unknown command: " + mainCommand);
             }
 
             if (matchingCommands.Count > 1)
             {
-                throw new Exception("Multiple possible commands found: " + commandText);
+                throw new Exception("Multiple possible commands found: " + mainCommand);
             }
 
-            var command = (ICommand) Activator.CreateInstance(matchingCommands.Single(), message);
+            var command = (ICommand)Activator.CreateInstance(matchingCommands.Single(), message, commandArguments);
             return command;
         }
 
-        private string GetMainCommandText(string text)
+        private Tuple<string, string[]> GetCommandParts(string text)
         {
-            return string.IsNullOrWhiteSpace(text) ? string.Empty : text.Split(' ')[0];
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return Tuple.Create(string.Empty, new string[0]);
+            }
+
+            var parts = text.Split(' ');
+            return Tuple.Create(parts[0], parts.Skip(1).ToArray());
         }
 
         private bool MatchesCommandText(Type commandType, string commandText)

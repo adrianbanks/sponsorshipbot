@@ -10,7 +10,7 @@ namespace SponsorshipBot.Commands
     {
         private readonly SponsorRepository sponsorRepository = new SponsorRepository();
 
-        public ListAllSponsorsCommand(SlackMessage message) : base(message)
+        public ListAllSponsorsCommand(SlackMessage message, string[] commandArguments) : base(message, commandArguments)
         {
         }
 

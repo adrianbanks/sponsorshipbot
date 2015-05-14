@@ -18,5 +18,19 @@ namespace SponsorshipBot.DataAccess
         {
             return database.Totals.All();
         }
+
+        public void UpdateTotalNeeded(decimal totalNeeded)
+        {
+            var totals = GetTotals();
+            totals.AmountNeeded = totalNeeded;
+            database.Totals.Update(totals);
+        }
+
+        public void UpdateStartingBalance(decimal startingBalance)
+        {
+            var totals = GetTotals();
+            totals.StartingBalance = startingBalance;
+            database.Totals.Update(totals);
+        }
     }
 }

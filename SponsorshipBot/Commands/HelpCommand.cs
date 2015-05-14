@@ -5,7 +5,7 @@ namespace SponsorshipBot.Commands
     [Command("?", "help")]
     public class HelpCommand : CommandBase
     {
-        public HelpCommand(SlackMessage message) : base(message)
+        public HelpCommand(SlackMessage message, string[] commandArguments) : base(message, commandArguments)
         {
         }
 
@@ -16,6 +16,8 @@ namespace SponsorshipBot.Commands
 `(optional parameter)`
 
 `totals` Show the sponsorship totals so far
+`totals total=<amount> Update the total amount needed
+`totals start=<amount> Update the starting balance
 `all` Show all sponsors
 ";
             return helpText;

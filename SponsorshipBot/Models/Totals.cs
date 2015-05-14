@@ -2,6 +2,7 @@
 {
     public class Totals
     {
+        public int Id { get; set; }
         public decimal AmountNeeded { get; set; }
         public decimal StartingBalance { get; set; }
     }
