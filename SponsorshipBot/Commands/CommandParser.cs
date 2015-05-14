@@ -6,7 +6,8 @@ namespace SponsorshipBot.Commands
     {
         public ICommand ParseCommand(SlackMessage message)
         {
-            return new ListAllSponsorsCommand();
+            return new HelpCommand();
+//            return new ListAllSponsorsCommand();
         }
     }
 }
