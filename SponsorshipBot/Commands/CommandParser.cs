@@ -41,7 +41,7 @@ namespace SponsorshipBot.Commands
         private bool MatchesCommandText(Type commandType, string commandText)
         {
             var attribute = commandType.GetCustomAttribute<CommandAttribute>();
-            return attribute != null && string.Equals(commandText, attribute.CommandText);
+            return attribute != null && attribute.CommandTexts.Any(t => string.Equals(commandText, t, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public IEnumerable<Type> FindAllCommandTypes()

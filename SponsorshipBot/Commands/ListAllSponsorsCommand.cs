@@ -5,7 +5,7 @@ using SponsorshipBot.Models;
 
 namespace SponsorshipBot.Commands
 {
-    [Command("all")]
+    [Command("list", "all")]
     public class ListAllSponsorsCommand : CommandBase
     {
         private readonly SponsorRepository sponsorRepository = new SponsorRepository();

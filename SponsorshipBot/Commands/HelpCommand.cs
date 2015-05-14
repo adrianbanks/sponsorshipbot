@@ -2,7 +2,7 @@
 
 namespace SponsorshipBot.Commands
 {
-    [Command("help")]
+    [Command("?", "help")]
     public class HelpCommand : CommandBase
     {
         public HelpCommand(SlackMessage message) : base(message)

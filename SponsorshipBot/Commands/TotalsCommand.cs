@@ -6,7 +6,7 @@ using SponsorshipBot.Models;
 
 namespace SponsorshipBot.Commands
 {
-    [Command("totals")]
+    [Command("total", "totals")]
     public class TotalsCommand : CommandBase
     {
         private readonly TotalsRepository totalsRepository = new TotalsRepository();

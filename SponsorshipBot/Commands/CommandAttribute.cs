@@ -5,12 +5,12 @@ namespace SponsorshipBot.Commands
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class CommandAttribute : Attribute
     {
-        public string CommandText { get { return commandText; } }
-        private readonly string commandText;
+        public string[] CommandTexts { get { return commandTexts; } }
+        private readonly string[] commandTexts;
 
-        public CommandAttribute(string commandText)
+        public CommandAttribute(params string[] commandTexts)
         {
-            this.commandText = commandText;
+            this.commandTexts = commandTexts;
         }
     }
 }
