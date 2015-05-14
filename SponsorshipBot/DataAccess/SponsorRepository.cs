@@ -10,7 +10,7 @@ namespace SponsorshipBot.DataAccess
 
         public IEnumerable<Sponsor> GetAllSponsors()
         {
-            return database.Sponsors.FindAll();
+            return database.Sponsors.All();
         }
     }
 }
