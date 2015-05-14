@@ -12,5 +12,10 @@ namespace SponsorshipBot.DataAccess
         {
             return database.Sponsors.All();
         }
+
+        public void AddSponsor(Sponsor sponsor)
+        {
+            database.Sponsors.Insert(sponsor);
+        }
     }
 }
