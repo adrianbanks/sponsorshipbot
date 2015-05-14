@@ -2,9 +2,9 @@
 using System.Text;
 using SponsorshipBot.DataAccess;
 
-namespace SponsorshipBot.CommandProcessors
+namespace SponsorshipBot.Commands
 {
-    public class ListAllSponsorsCommandProcessor
+    public class ListAllSponsorsCommand : ICommand
     {
         private readonly SponsorRepository sponsorRepository = new SponsorRepository();
 

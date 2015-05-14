@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using SponsorshipBot.CommandProcessors;
+using SponsorshipBot.Commands;
 using SponsorshipBot.Models;
 
 namespace SponsorshipBot.Controllers
@@ -21,19 +21,15 @@ namespace SponsorshipBot.Controllers
                     return this.Request.CreateErrorResponse(HttpStatusCode.Forbidden, "Invalid team token");
                 }
 
-                var response = EndpointImpl(message);
+                var commandParser = new CommandParser();
+                var command = commandParser.ParseCommand(message);
+                var response = command.Execute();
                 return new HttpResponseMessage { Content = new StringContent(response) };
             }
             catch (Exception exception)
             {
                 return this.Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception.Message, exception);
             }
-        }
-
-        private string EndpointImpl(SlackMessage message)
-        {
-            string response = new ListAllSponsorsCommandProcessor().Execute();
-            return response;
         }
     }
 }
