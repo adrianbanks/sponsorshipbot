@@ -23,14 +23,14 @@ namespace SponsorshipBot.Commands
                 if (commandArguments[0].StartsWith("total=", StringComparison.CurrentCultureIgnoreCase))
                 {
                     var totalNeededStr = commandArguments[0].Substring(6).Trim();
-                    decimal totalNeeded = Decimal.Parse(totalNeededStr);
+                    decimal totalNeeded = DecimalEx.Parse(totalNeededStr);
                     totalsRepository.UpdateTotalNeeded(totalNeeded);
                 }
 
                 if (commandArguments[0].StartsWith("start=", StringComparison.CurrentCultureIgnoreCase))
                 {
                     var startingBalanceStr = commandArguments[0].Substring(6).Trim();
-                    decimal startingBalance = Decimal.Parse(startingBalanceStr);
+                    decimal startingBalance = DecimalEx.Parse(startingBalanceStr);
                     totalsRepository.UpdateStartingBalance(startingBalance);
                 }
             }

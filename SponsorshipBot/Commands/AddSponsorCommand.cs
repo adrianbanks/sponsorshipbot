@@ -29,7 +29,8 @@ namespace SponsorshipBot.Commands
 
             if (commandArguments.Length == 2)
             {
-                var amountPledged = Decimal.Parse(commandArguments[1]);
+                var amountPledgedStr = commandArguments[1];
+                var amountPledged = DecimalEx.Parse(amountPledgedStr);
                 sponsor.AmountPledged = amountPledged;
             }
 

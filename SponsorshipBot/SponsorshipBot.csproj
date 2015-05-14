@@ -139,6 +139,7 @@
     <Compile Include="Commands\TotalsCommand.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SlackBotController.cs" />
+    <Compile Include="DecimalEx.cs" />
     <Compile Include="Models\Totals.cs" />
     <Compile Include="DataAccess\TotalsRepository.cs" />
     <Compile Include="Models\SlackMessage.cs" />
