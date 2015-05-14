@@ -44,9 +44,10 @@ namespace SponsorshipBot.Commands
                 {
                     text.AppendFormat("    {0} has agreed to be a sponsor", sponsor.Name);
                 }
+
+                text.AppendLine();
             }
 
-            text.AppendLine();
             text.AppendLine();
             text.AppendLine("Total: `£" + total + "`");
             return text.ToString();
