@@ -18,7 +18,7 @@ namespace SponsorshipBot.Commands
         {
             if (!commandArguments.Any())
             {
-                return "A name must be specified when adding a sponsor :unamused:";
+                return "C'mon - you at least need to give me a name when adding a sponsor :unamused:";
             }
 
             var sponsor = new Sponsor
