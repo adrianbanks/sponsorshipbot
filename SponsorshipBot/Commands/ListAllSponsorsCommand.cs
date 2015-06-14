@@ -26,19 +26,27 @@ namespace SponsorshipBot.Commands
             var text = new StringBuilder();
             text.AppendLine("Current sponsors:");
             text.AppendLine();
-            decimal total = 0;
+            decimal totalPledged = 0;
+            decimal totalReceived = 0;
 
             foreach (var sponsor in allSponsors)
             {
-                if (sponsor.AmountReceived.HasValue)
+                if (sponsor.AmountPledged.HasValue && sponsor.AmountReceived.HasValue && sponsor.AmountPledged.Value == sponsor.AmountReceived.Value)
                 {
                     text.AppendFormat("    {0} has already paid `£{1}`", sponsor.Name, sponsor.AmountReceived.Value);
-                    total += sponsor.AmountReceived.Value;
+                    totalPledged += sponsor.AmountPledged.Value;
+                    totalReceived += sponsor.AmountReceived.Value;
+                }
+                else if (sponsor.AmountPledged.HasValue && sponsor.AmountReceived.HasValue)
+                {
+                    text.AppendFormat("    {0} has pledged `£{1}` and already paid `£{2}`", sponsor.Name, sponsor.AmountPledged.Value, sponsor.AmountReceived.Value);
+                    totalPledged += sponsor.AmountPledged.Value;
+                    totalReceived += sponsor.AmountReceived.Value;
                 }
                 else if (sponsor.AmountPledged.HasValue)
                 {
                     text.AppendFormat("    {0} has pledged `£{1}`", sponsor.Name, sponsor.AmountPledged.Value);
-                    total += sponsor.AmountPledged.Value;
+                    totalPledged += sponsor.AmountPledged.Value;
                 }
                 else
                 {
@@ -49,7 +57,8 @@ namespace SponsorshipBot.Commands
             }
 
             text.AppendLine();
-            text.AppendLine("Total: `£" + total + "`");
+            text.AppendLine("Total pledged: `£" + totalPledged + "`");
+            text.AppendLine("Total received: `£" + totalReceived + "`");
             return text.ToString();
         }
     }
