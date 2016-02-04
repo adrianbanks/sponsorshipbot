@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Simple.Data;
 using SponsorshipBot.Models;
 
@@ -8,7 +9,12 @@ namespace SponsorshipBot.DataAccess
     {
         private readonly dynamic database = Database.Open();
 
-        public IEnumerable<Sponsor> GetAllSponsors()
+        public IEnumerable<Sponsor> GetAllSponsors(int conferenceId)
+        {
+            return GetAllSponsors().Where(s => s.ConferenceId == conferenceId);
+        }
+
+        private IEnumerable<Sponsor> GetAllSponsors()
         {
             return database.Sponsors.All();
         }

@@ -8,6 +8,7 @@ namespace SponsorshipBot.Commands
     [Command("list", "all")]
     public class ListAllSponsorsCommand : CommandBase
     {
+        private readonly ConferenceRepository conferenceRepository = new ConferenceRepository();
         private readonly SponsorRepository sponsorRepository = new SponsorRepository();
 
         public ListAllSponsorsCommand(SlackMessage message, string[] commandArguments) : base(message, commandArguments)
@@ -16,7 +17,8 @@ namespace SponsorshipBot.Commands
 
         public override string Execute()
         {
-            var allSponsors = sponsorRepository.GetAllSponsors().ToList();
+            var conference = conferenceRepository.GetCurrentConference();
+            var allSponsors = sponsorRepository.GetAllSponsors(conference.Id).ToList();
 
             if (!allSponsors.Any())
             {

@@ -9,9 +9,9 @@ namespace SponsorshipBot.DataAccess
     {
         private readonly dynamic database = Database.Open();
 
-        public Totals GetTotals()
+        public Totals GetTotals(int conferenceId)
         {
-            return GetAllTotals().Single();
+            return GetAllTotals().Single(c => c.ConferenceId == conferenceId);
         }
 
         private IEnumerable<Totals> GetAllTotals()
@@ -19,16 +19,16 @@ namespace SponsorshipBot.DataAccess
             return database.Totals.All();
         }
 
-        public void UpdateTotalNeeded(decimal totalNeeded)
+        public void UpdateTotalNeeded(int conferenceId, decimal totalNeeded)
         {
-            var totals = GetTotals();
+            var totals = GetTotals(conferenceId);
             totals.AmountNeeded = totalNeeded;
             database.Totals.Update(totals);
         }
 
-        public void UpdateStartingBalance(decimal startingBalance)
+        public void UpdateStartingBalance(int conferenceId, decimal startingBalance)
         {
-            var totals = GetTotals();
+            var totals = GetTotals(conferenceId);
             totals.StartingBalance = startingBalance;
             database.Totals.Update(totals);
         }

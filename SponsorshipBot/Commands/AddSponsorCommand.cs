@@ -8,6 +8,7 @@ namespace SponsorshipBot.Commands
     [Command("add", "new")]
     public class AddSponsorCommand : CommandBase
     {
+        private readonly ConferenceRepository conferenceRepository = new ConferenceRepository();
         private readonly SponsorRepository sponsorRepository = new SponsorRepository();
 
         public AddSponsorCommand(SlackMessage message, string[] commandArguments) : base(message, commandArguments)
@@ -33,6 +34,9 @@ namespace SponsorshipBot.Commands
                 var amountPledged = DecimalEx.Parse(amountPledgedStr);
                 sponsor.AmountPledged = amountPledged;
             }
+
+            var conference = conferenceRepository.GetCurrentConference();
+            sponsor.ConferenceId = conference.Id;
 
             sponsorRepository.AddSponsor(sponsor);
             return ":thumbsup: Sponsor added";

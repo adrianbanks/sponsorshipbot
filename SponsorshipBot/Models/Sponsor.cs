@@ -7,5 +7,6 @@
         public decimal? AmountPledged { get; set; }
         public decimal? AmountReceived { get; set; }
         public string AddedBy { get; set; }
+        public int ConferenceId { get; set; }
     }
 }
