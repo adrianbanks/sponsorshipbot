@@ -8,6 +8,7 @@ namespace SponsorshipBot.Commands
     [Command("update")]
     public class UpdateSponsorCommand : CommandBase
     {
+        private readonly ConferenceRepository conferenceRepository = new ConferenceRepository();
         private readonly SponsorRepository sponsorRepository = new SponsorRepository();
 
         public UpdateSponsorCommand(SlackMessage message, string[] commandArguments)
@@ -30,7 +31,8 @@ namespace SponsorshipBot.Commands
             var sponsorName = commandArguments[0];
             var monetaryAmountParameter = commandArguments[1];
 
-            var sponsor = sponsorRepository.Get(sponsorName);
+            var conference = conferenceRepository.GetCurrentConference();
+            var sponsor = sponsorRepository.Get(conference.Id, sponsorName);
 
             if (monetaryAmountParameter.StartsWith("pledged=", StringComparison.CurrentCultureIgnoreCase))
             {

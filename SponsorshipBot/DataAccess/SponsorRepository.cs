@@ -19,9 +19,9 @@ namespace SponsorshipBot.DataAccess
             return database.Sponsors.All();
         }
 
-        public Sponsor Get(string sponsorName)
+        public Sponsor Get(int conferenceId, string sponsorName)
         {
-            return database.Sponsors.Find(database.Sponsors.Name == sponsorName);
+            return database.Sponsors.Find(database.Sponsors.ConferenceId == conferenceId && database.Sponsors.Name == sponsorName);
         }
 
         public void AddSponsor(Sponsor sponsor)
@@ -34,9 +34,9 @@ namespace SponsorshipBot.DataAccess
             database.Sponsors.UpdateById(sponsor);
         }
 
-        public void DeleteSponsor(string name)
+        public void DeleteSponsor(int conferenceId, string name)
         {
-            database.Sponsors.Delete(Name: name);
+            database.Sponsors.Delete(ConferenceId: conferenceId, Name: name);
         }
     }
 }
