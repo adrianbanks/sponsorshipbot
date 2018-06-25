@@ -27,8 +27,8 @@ CREATE TABLE [dbo].[Sponsors]
 (
 	[Id] [int] NOT NULL IDENTITY (1, 1),
 	[Name] [nvarchar](255) NOT NULL,
-    [AmountPledged] [decimal](7, 2) NULL,
-    [AmountReceived] [decimal](7, 2) NULL,
+  [AmountPledged] [decimal](7, 2) NULL,
+  [AmountReceived] [decimal](7, 2) NULL,
 	[AddedBy] [nchar](255) NOT NULL,
 	[ConferenceId] [int] NOT NULL
 
@@ -43,8 +43,8 @@ GO
 CREATE TABLE [dbo].[Totals]
 (
 	[Id] [int] NOT NULL IDENTITY (1, 1),
-    [AmountNeeded] [decimal](7, 2) NOT NULL,
-    [StartingBalance] [decimal](7, 2) NOT NULL,
+  [AmountNeeded] [decimal](7, 2) NOT NULL,
+  [StartingBalance] [decimal](7, 2) NOT NULL,
 	[ConferenceId] [int] NOT NULL
 
 	CONSTRAINT [PK_Totals] PRIMARY KEY CLUSTERED ([Id] ASC)
