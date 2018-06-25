@@ -4,3 +4,5 @@
 *.user
 _ReSharper*
 packages
+.idea/
+.vs/
