@@ -19,10 +19,6 @@ CREATE TABLE [dbo].[Conferences]
 )
 GO
 
-INSERT INTO [dbo].[Conferences] ([Name]) VALUES ('DDDEA 2015')
-INSERT INTO [dbo].[Conferences] ([Name]) VALUES ('DDDEA 2016')
-GO
-
 CREATE TABLE [dbo].[Sponsors]
 (
 	[Id] [int] NOT NULL IDENTITY (1, 1),
